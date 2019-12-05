@@ -1,21 +1,25 @@
 <template>
   <div>
-    <MainTitle label="Add a new item" size="h2" />
+    <Title label="Add a new item" size="h2" />
     <form @submit="handleSubmit">
-      <input ref="input" type="text" />
-      <button type="submit">Add Item</button>
-      <span class="invalid" v-show="invalid">Please enter an item</span>
+      <div class="form-group">
+        <input class="form-group__input" ref="input" type="text" />
+        <Button label="Add Item" type="submit" />
+      </div>
+      <span class="danger" v-show="invalid">Please enter an item</span>
     </form>
   </div>
 </template>
 
 <script>
+import Button from './Button';
 import Title from './Title';
 
 export default {
   name: 'AddItem',
   components: {
-    MainTitle: Title,
+    Button,
+    Title,
   },
   data() {
     return {
@@ -37,7 +41,16 @@ export default {
 </script>
 
 <style scoped>
-  .invalid {
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-group__input {
+    box-sizing: border-box;
+    padding: 10px;
+    width: calc(100% - 120px);
+  }
+  .danger {
     color: darkred;
     display: block;
     margin: 10px 0 0 0;
